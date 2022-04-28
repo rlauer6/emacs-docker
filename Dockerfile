@@ -12,6 +12,7 @@ RUN cd emacs; \
 ./autogen.sh; \
 ./configure && make && make install
 ########################################################################
+RUN yum install -y procps
 RUN useradd -u 501 rlauer
 # RUN mkdir /tmp/emacs501 && chown 501:501 /tmp/emacs501 && chmod 700 /tmp/emacs501
 USER $user
