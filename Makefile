@@ -1,5 +1,4 @@
 TAG=emacs:latest
-USER=rlauer
 
 all: emacs-latest
 
@@ -8,14 +7,16 @@ docker-build.log: Dockerfile
 	user=$(USER); \
 	user=$${user:-root}; \
 	GROUP_ID=$$(id -u $(USER)); \
+	echo "BUILDING with USER:$$user, GROUP:$$group"; \
 	docker build \
-	  --build-arg user=rlauer \
-	  --build-arg group=rlauer \
+	  --build-arg user=$$user \
+	  --build-arg group=$$group \
 	  -f $< . -t $(TAG) | tee $@ || rm "$@"
 
 emacs-latest: docker-build.log
 	docker run --rm emacs:latest \
 	  emacs --version | head -1 | awk '{ print $$3}' > $@
+	echo "TAGGING image: $$version"; \
 	docker tag emacs:latest emacs:$$(cat $@)
 
 .PHONY: clean
