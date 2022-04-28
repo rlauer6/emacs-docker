@@ -12,6 +12,6 @@ RUN cd emacs; \
 ./autogen.sh; \
 ./configure && make && make install
 ########################################################################
-
-RUN useradd -u $group $user
+RUN useradd -u 501 rlauer
+# RUN mkdir /tmp/emacs501 && chown 501:501 /tmp/emacs501 && chmod 700 /tmp/emacs501
 USER $user

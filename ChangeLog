@@ -2,7 +2,9 @@ Wed Apr 27 00:49:19 2022  Rob Lauer  <rclauer@gmail.com>
 
 	[first check-in]:
 	* README: new
+	* ChangeLog: new
 	* Dockerfile: new
 	* Makefile: new
 	* .gitignore: new
+	* LICENSE: new
 

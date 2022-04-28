@@ -1,4 +1,5 @@
 TAG=emacs:latest
+USER=rlauer
 
 all: emacs-latest
 
@@ -8,8 +9,8 @@ docker-build.log: Dockerfile
 	user=$${user:-root}; \
 	GROUP_ID=$$(id -u $(USER)); \
 	docker build \
-	  --build-arg user=$(USER) \
-	  --build-arg group=$$GROUP_ID \
+	  --build-arg user=rlauer \
+	  --build-arg group=rlauer \
 	  -f $< . -t $(TAG) | tee $@ || rm "$@"
 
 emacs-latest: docker-build.log

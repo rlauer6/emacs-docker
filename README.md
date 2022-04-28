@@ -21,6 +21,7 @@ make USER=foo
 ```shell
 docker run -it --rm \
   -e TERM=xterm-256color -e TZ=US/Eastern \
+  -u 501 \
   -v $HOME:$HOME emacs:latest emacs
 ```
 
