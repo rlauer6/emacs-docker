@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# -*- mode: sh; -*-
+# run emacs as user
+
+ID=${1:-$(id -u)}
+
+docker run -it --rm  -u $ID \
+       -v /home/rlauer/git:/home/rlauer/git \
+       -v /home/rlauer/docker-emacs-d/.gitconfig:/home/rlauer/.gitconfig \
+       -v /home/rlauer/etc/emacs/html-helper-mode:/home/rlauer/etc/emacs/html-helper-mode \
+       -v /home/rlauer/etc/emacs/bedrock-mode.el:/home/rlauer/etc/emacs/bedrock-mode.el \
+       -v /home/rlauer/etc/emacs/perltidy-mode.el:/home/rlauer/etc/emacs/perltidy-mode.el \
+       -v /home/rlauer/docker-emacs-d:/home/rlauer/.emacs.d \
+       -v /usr/local/share/perl5:/usr/local/share/perl5 \
+       -v /usr/lib64/perl5:/usr/lib64/perl5 \
+       -v /usr/share/perl5:/usr/share/perl5 \
+       -v /usr/local/lib64/perl5:/usr/local/lib64/perl5 \
+       -v /usr/share/lib64/perl5:/usr/share/lib64/perl5 \
+       -v /usr/local/bin/perlcritic:/usr/local/bin/perlcritic \
+       -v /usr/local/bin/perltidy:/usr/local/bin/perltidy \
+       -e HOME=/home/rlauer -e TERM=xterm-256color -e TZ=US/Eastern \
+       emacs:latest emacs
