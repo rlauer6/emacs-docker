@@ -5,6 +5,7 @@
 ID=${1:-$(id -u)}
 
 docker run -it --rm  -u $ID \
+       -v /home/rlauer/.ssh:/home/rlauer/.ssh \
        -v /home/rlauer/git:/home/rlauer/git \
        -v /home/rlauer/docker-emacs-d/.gitconfig:/home/rlauer/.gitconfig \
        -v /home/rlauer/etc/emacs/html-helper-mode:/home/rlauer/etc/emacs/html-helper-mode \
