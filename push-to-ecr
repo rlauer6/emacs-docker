@@ -1,0 +1,27 @@
+#!/bin/bash
+# -*- mode: sh; -*-
+
+function push_to_repo() {
+    TAG="$1"
+    AWS_REGION=${AWS_REGION:-us-east-1}
+    
+    if test -n "$TAG"; then
+        ACCOUNT=${ACCOUNT:-311974035819}
+        ECS_REPO=${ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com
+        
+        docker tag ${TAG}:latest ${ECS_REPO}/${TAG}:latest
+        
+        AWS_PROFILE=$AWS_PROFILE aws ecr get-login-password --region ${AWS_REGION} | \
+           docker login --username AWS --password-stdin ${ECS_REPO}/${TAG}
+        
+        AWS_PROFILE=$AWS_PROFILE docker push ${ECS_REPO}/${TAG}:latest
+    fi
+}
+
+ACCOUNT=${ACCOUNT:-311974035819}
+TAG="$1"
+TAG=${TAG:-test-amazon-credentials}
+
+#docker build . -t $TAG
+push_to_repo $TAG
+

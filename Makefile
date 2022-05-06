@@ -6,11 +6,12 @@ docker-build.log: Dockerfile
 	set -o pipefail; \
 	user=$(USER); \
 	user=$${user:-root}; \
-	GROUP_ID=$$(id -u $(USER)); \
-	echo "BUILDING with USER:$$user, GROUP:$$group"; \
+	user_id=$$(id -u $$user); \
+	group_id=$$(id -u $$user); \
+	echo "BUILDING with USER:$$user_id, GROUP:$$group_id"; \
 	docker build \
-	  --build-arg user=$$user \
-	  --build-arg group=$$group \
+	  --build-arg user=$$user_id \
+	  --build-arg group=$$group_id \
 	  -f $< . -t $(TAG) | tee $@ || rm "$@"
 
 emacs-latest: docker-build.log
