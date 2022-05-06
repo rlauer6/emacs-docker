@@ -14,5 +14,12 @@ RUN cd emacs; \
 ./autogen.sh; \
 ./configure && make && make install
 ########################################################################
+
+RUN cpanm -v Date::Calc \
+    List::Util \
+    Date::Format \
+    Text::ASCIITable \
+    Term::ANSIColor
+
 RUN useradd -u $user $group
 USER $user

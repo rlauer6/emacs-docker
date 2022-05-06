@@ -1,5 +1,10 @@
-Thu Apr 28 14:30:20 2022  Rob Lauer  <rlauer6@comcast.net>
+Fri May  6 11:53:05 2022  Rob Lauer  <rlauer6@comcast.net>
 
+	[push-to-ecr, emacs bash script]:
+	* emacs-docker: renamed to emacs
+	* added Perl modules to Dockerfile (as an example)
+
+Thu Apr 28 14:30:20 2022  Rob Lauer  <rlauer6@comcast.net>
 	[bash script]:
 	* emacs-docker: new
 	* README.md: tips
